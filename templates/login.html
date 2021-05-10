@@ -4,13 +4,14 @@
 	<title>Pyrebase-Flask-Login</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'main.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/nav-bar.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/login.css') }}">
 	<link href="{{ url_for('static', filename = 'font/ProductSans-Bold.ttf') }}">
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
   <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous"> -->
 </head>
-<body style="background-color:#56baed; margin:0px;">
+<body style="margin:0px;">
   <!-- navigation bar -->
   <div class="navbar" style="justify-content: flex-start;">
     <h3 style="color:white">CB Lite Games</h3>
@@ -35,34 +36,82 @@
   </div>
 
   
-<div class="wrapper fadeInDown">
-  <!-- side navigation -->
-  
+  <div class="container login-container" >
+    <div></div>
+    <div class="row">
+        <div class="col-md-6 login-form-1">
+            <h3>Login</h3>
+            <form action="/result" method="POST">
+                <div  class="form-group required">
+                  <input class="form-control" name="email" formControlName="Email" placeholder="Email">
+                </div>
+                <div class="form-group required">
+                  <input type="password" class="form-control" name="pass" formControlName="Password" placeholder="Password of 8 characters">
+                </div>
+                <div  class="form-row">
+                  <div  class="form-group col-md-12">
+                    <button type="submit" class="btnSubmit" style="float: left;">Sign In</button>
+                  </div>
+                </div>
+                <div   class="form-group">
+                    <a href="#" class="btnForgetPwd" style="color:rgb(132, 133, 134)">Forget Password?</a>
+                </div>
+              </form>
+            
+        </div>
+        <div class="col-md-6 login-form-2">
 
-  
-  <div id="formContent">
-    <!-- Tabs Titles -->
-    <h2 class="active"> Sign In </h2>
-    <a href="http://127.0.0.1:5000/signup"><h2 class="inactive underlineHover">Sign Up </h2></a>
+              <h4>Don't Have An Account Yet?</h4>
+              <br/>
+              <br/>
+              <br/>
+              <form method="get" action="/signup">
+              <button type="submit" class="btnSubmit">Register</button>
+            </form>
+              <!-- <a href="http://127.0.0.1:5000/signup"><h2 class="inactive underlineHover">Sign Up </h2></a> -->
 
-    <!-- Icon -->
-    <div class="fadeIn first">
-      <img src="{{ url_for('static', filename = 'user.png') }}" id="icon" alt="User Icon" />
+            <!-- <form [formGroup]="registerFormModel" autocomplete="off" (ngSubmit)="onRegisterSubmit(registerFormModel.value)">
+              <div class="form-group">
+                <input class="form-control" formControlName="username" placeholder="Username">
+              </div>
+              <div class="form-group">
+                <input class="form-control" formControlName="Email" placeholder="Email">
+                <label *ngIf="registerFormModel.get('Email')?.touched && registerFormModel.get('Email')?.errors?.required">
+                  This field is mandatory.
+                </label>
+                <label *ngIf="registerFormModel.get('Email')?.touched && registerFormModel.get('Email')?.errors?.email">
+                  Invalid email address.
+                </label>
+              </div>
+              <div formGroupName="Passwords">
+                <div class="form-group">
+                  <input type="password" class="form-control" formControlName="Password" placeholder="Password">
+                  <label *ngIf="registerFormModel.get('Passwords.Password')?.touched && registerFormModel.get('Passwords.Password')?.errors?.required">
+                    This field is mandatory.
+                  </label>
+                  <label *ngIf="registerFormModel.get('Passwords.Password')?.touched && registerFormModel.get('Passwords.Password')?.errors?.minlength">
+                    Minimum 4 characters required.
+                  </label>
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" formControlName="ConfirmPassword" placeholder="Confirm Password">
+                  <label *ngIf="registerFormModel.get('Passwords.ConfirmPassword')?.touched && registerFormModel.get('Passwords.ConfirmPassword')?.errors?.required">
+                    This field is mandatory.
+                  </label>
+                  <label *ngIf="registerFormModel.get('Passwords.ConfirmPassword')?.touched && registerFormModel.get('Passwords.ConfirmPassword')?.errors?.passwordMismatch">
+                    Confirm Password does not match.
+                  </label>
+                </div>
+              </div>              
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <button type="submit" class="btnSubmit" style="float: left;">Register</button>
+                </div>
+              </div>
+            </form> -->
+
+        </div>
     </div>
-
-    <!-- Login Form -->
-    <form action="http://127.0.0.1:5000/result" method="POST">
-      <input type="email" id="login" class="fadeIn second" name="email" placeholder="email">
-      <input type="password" id="password" class="fadeIn third" name="pass" placeholder="password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
-    </form>
-<!-- 
-	Will add in future
-    <div id="formFooter">
-      <a class="underlineHover" href="#">Forgot Password?</a>
-    </div>
- -->
-  </div>
-  </div>
+</div>
 </body>
 </html>

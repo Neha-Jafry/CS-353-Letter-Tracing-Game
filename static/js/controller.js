@@ -60,9 +60,9 @@ function mathtutor($scope, $log, $http) {
         // var userInput = $scope.url;
 
         // fire the API request
-        $http.post('/game/score', {"score": $scope.noOfIceCreams}).
+        $http.post('/game/score', data = {"score": $scope.noOfIceCreams}).
         success(function(results) {
-            $log.log(results);
+            $log.log(request);
         }).
         error(function(error) {
             $log.log(error);

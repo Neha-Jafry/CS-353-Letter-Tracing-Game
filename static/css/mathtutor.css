@@ -1,9 +1,10 @@
 body {
     /* padding-top: 30px; */
     /*    background-color: #B6D7F2;*/
-    background-image: url("../images/background2.jpeg");
+    background-image: url("../images/background2.jpg");
     background-size: cover;
     background-attachment: fixed;
+    
 }
 .reward-font {
     font-family: 'Handlee', cursive;

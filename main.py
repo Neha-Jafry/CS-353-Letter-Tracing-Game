@@ -1,6 +1,7 @@
 # from flask import Flask
 import pyrebase
 from flask import Flask, flash, redirect, render_template, request, session, abort, url_for
+import json
 
 app = Flask(__name__)
 
@@ -25,13 +26,15 @@ firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
 db = firebase.database()
 
+@app.route('/log')
+def log():
+     return render_template("login1.html")
+
 @app.route('/game')
 def hello():
     if person["is_logged_in"] == True:
-        print("Hello World")
-        person['Math'] +=1
-        print(person)
-        g = db.child("user").child(person['uid']).child('Games Played').get() 
+        g = db.child("users").child(person['uid']).child('Math').get() 
+        db.child("users").child(person['uid']).child('Math').set(g.val()+1) 
         return render_template("index.html", name = person["name"])
     else:
         return render_template("login.html")
@@ -39,28 +42,29 @@ def hello():
 @app.route('/game1')
 def game():
     if person["is_logged_in"] == True:
-        print("Hello World")
-        person['Letter Tracing'] +=1
-        print(person)
-        db.child("user").child(person['uid']).child('Games Played').set(person['Games Played'])
-        if db.child("user").child(person['uid']).child('Games Played') == 1:
-            print(222)
+        g = db.child("users").child(person['uid']).child('Letter Tracing').get() 
+        db.child("users").child(person['uid']).child('Letter Tracing').set(g.val()+1) 
         return render_template("game.html",name = person["name"] )
     else:
         return render_template("login.html")
 
 @app.route('/game/score', methods=["POST", "GET"])
 def showScore():
-    
-    print(111)
-    score = request.form['score']
-    return render_template("score.html")
+    data = json.loads(request.data.decode())
+    score = data['score']
+    g = db.child("users").child(person['uid']).child('high scoreM').get().val()
+    if score > g:
+        db.child("users").child(person['uid']).child('high scoreM').set(score)
+        print("done")
+    return render_template("login1.html")
 
 
 
 @app.route('/stat')
 def admin():
-    return render_template("stat.html", person)
+    data = db.child("users").child(person['uid']).get().val()
+    print(data)
+    return render_template("stat.html")
 
 #Login
 @app.route("/")
@@ -81,8 +85,11 @@ def navbar():
 #If someone clicks on login, they are redirected to /result
 @app.route("/result", methods = ["POST", "GET"])
 def result():
-    if request.method == "POST":        #Only if data has been posted
-        result = request.form           #Get the data
+    if request.method == "POST": 
+        print("here")       #Only if data has been posted
+        result = request.form
+        print("here22") 
+        print(request.form)          #Get the data
         email = result["email"]
         password = result["pass"]
         try:
@@ -94,9 +101,11 @@ def result():
             person["email"] = user["email"]
             person["uid"] = user["localId"]
             #Get the name of the user
+            print(4)
             data = db.child("users").get()
             person["name"] = data.val()[person["uid"]]["name"]
             #Redirect to welcome page
+            print("end")
             return redirect(url_for('chooseGame'))
         except:
             #If there is any error, redirect back to login
@@ -115,8 +124,10 @@ def register():
         email = result["email"]
         password = result["pass"]
         name = result["name"]
+        print(result)
         try:
             #Try creating the user account using the provided data
+            # password == result["pass_c"]
             auth.create_user_with_email_and_password(email, password)
             #Login the user
             user = auth.sign_in_with_email_and_password(email, password)
@@ -148,10 +159,6 @@ def chooseGame():
     else:
         return redirect(url_for('login'))
 
-
-# @app.route('/game')
-# def scoreScreen():
-#     return render_template('game.html')
 
 @app.route('/scoreScreen')
 def scoreScreen():
