@@ -5,45 +5,72 @@
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
     <title>Game Screen CBLite</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
-        .card-body:hover {background-color:#f2f2f2;}
-.bg-light1{background-color:#f2f2f2;!important}
-    </style>
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/choose.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/nav-bar.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'main.css') }}">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
+<!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous"> -->
 </head>
-<body>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<body style="margin:0px;">
+  <!-- navigation bar -->
+  <div class="navbar" style="justify-content: flex-start;">
+    <h3 style="color:white">CB Lite Games</h3>
+    <h4 style="color:white">{{name }}</h4>
+    <a href="/signup">Sign Out</a>
+    <a href="/stat">Statistics</a>
 
-<section class="py-5 bg-primary text-light">
-    <div class="container">
-        <div class="row">
-            <h2>Choose A Game</h2>
-        </div>
+    <div class="dropdown">
+      <button class="dropbtn" style="color: #333;">More
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="/stat">Statistics</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+      </div>
     </div>
-</section>
-<section class="services py-5 bg-light1 text-center">
-    <div class="container">
+  </div>
+
+  <div class="sidenav">
+    <a href="#">Letter Tracing Game</a>
+    <a href="#">Other Game</a>
+  </div>
+
+
+  <div id="page-content-wrapper">
+    <div class="container fluid">
+        <h1 id="page-title" class="mt-4">
+            <span style="color: rgb(88, 103, 121);">Games </span >
+        </h1>
+    </div>
+    <div id="main-display" class="container-fluid">
+    <!-- <div class="container"> -->
        <div class="row">
-           <div class="col-xs-12 col-sm-6 col-md-3">
-               <a href="./game" class="text-body">
-    		    <div class="card bg-light mb-3">
-    		        <div class="card-body">
-    		           <i class="fa fa-tachometer fa-4x "></i></br>
-                    	<h5>Letter Tracing Game</h5>
-    		        </div>
-    		    </div>
-    		   </a>
-    		</div>
+           
+            <div class="card">
+                <img src="{{url_for('static', filename='images/img2.jpg')}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title" style="color: black; font-weight: bold;">Letter Tracing Game</h5>
+                  <p class="card-text" style="color:black">Fun game helps children learn how to write</p>
+                  <a href="./game1" routerLink="/game" class="btn btn-primary">Play</a>
+                </div>
+              </div>
+
+              <div class="card">
+                <img src="{{url_for('static', filename='images/num.jpg')}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title" style="color: black; font-weight: bold;">Math Game</h5>
+                  <p class="card-text" style="color:black">Simple and fun game to learn addition</p>
+                  <a href="./game" routerLink="/game" class="btn btn-primary">Play</a>
+                </div>
+              </div>
     	   
     	   
        </div>
+    <!-- </div> -->
     </div>
-</section>
-
-<script type="text/javascript">
-
-</script>
+</div>
 </body>
 </html>

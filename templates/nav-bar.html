@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/nav-bar.css')}}">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+    </head>
+    <body>
+        <div class="d-flex" id="wrapper">
+
+            <!-- Sidebar -->
+            <div class="bg-dark border-bottom"  id="sidebar-wrapper">
+              <div class="sidebar-heading">CBLiteGames </div>
+              <div class="list-group list-group-flush">
+                <a href="#" class="list-group-item list-group-item-action bg-dark" style="color:rgb(201, 201, 209)">Letter Tracing Game</a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark" style="color:rgb(201, 201, 209)">Other Game</a>
+              </div>
+            </div>
+            <!-- /#sidebar-wrapper -->
+        
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+        
+              <nav class="navbar navbar-expand-lg navbar-dark border-bottom bg-dark">
+        
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Help</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link" href="#">Login</a>
+                      <!-- <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                      </a> -->
+                      <!-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div> -->
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+        
+              <div class="container-fluid">
+                <!-- <router-outlet></router-outlet> -->
+              </div>
+            </div>
+            <!-- /#page-content-wrapper -->
+        
+          </div>
+          <!-- /#wrapper -->
+    </body>
+    
+    
+</html>
