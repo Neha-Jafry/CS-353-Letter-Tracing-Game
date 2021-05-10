@@ -17,6 +17,9 @@ config = {
 }
 
 
+#Initialze person as dictionary
+person = {"is_logged_in": False, "name": "", "email": "", "uid": "" , "high scoreL": 0 , "high scoreM": 0, "Letter Tracing": 0, 'Math': 0}
+
 #initialize firebase
 firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
@@ -24,8 +27,27 @@ db = firebase.database()
 
 @app.route('/game')
 def hello():
-    print("Hello World")
-    return render_template("index.html")
+    if person["is_logged_in"] == True:
+        print("Hello World")
+        person['Math'] +=1
+        print(person)
+        g = db.child("user").child(person['uid']).child('Games Played').get() 
+        return render_template("index.html", name = person["name"])
+    else:
+        return render_template("login.html")
+
+@app.route('/game1')
+def game():
+    if person["is_logged_in"] == True:
+        print("Hello World")
+        person['Letter Tracing'] +=1
+        print(person)
+        db.child("user").child(person['uid']).child('Games Played').set(person['Games Played'])
+        if db.child("user").child(person['uid']).child('Games Played') == 1:
+            print(222)
+        return render_template("game.html",name = person["name"] )
+    else:
+        return render_template("login.html")
 
 @app.route('/game/score', methods=["POST", "GET"])
 def showScore():
@@ -34,8 +56,11 @@ def showScore():
     score = request.form['score']
     return render_template("score.html")
 
-#Initialze person as dictionary
-person = {"is_logged_in": False, "name": "", "email": "", "uid": ""}
+
+
+@app.route('/stat')
+def admin():
+    return render_template("stat.html", person)
 
 #Login
 @app.route("/")

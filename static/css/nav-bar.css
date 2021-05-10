@@ -96,13 +96,18 @@
   justify-content: flex-start;
   position: relative;
     /* display: -ms-flexbox; */
-    display: flex;
+  display: flex;
     /* -ms-flex-wrap: wrap; */
-    flex-wrap: wrap;
+  flex-wrap: wrap;
     /* -ms-flex-align: center; */
   padding: 8px 16px;
   align-items: center;
+  width: 100vw;
   border-radius: 0px;
+}
+
+.navbar h4{
+  padding: 14px 16px;
 }
 
 /* Links inside the navbar */
@@ -137,7 +142,7 @@
 }
 
 /* Add a red background color to navbar links on hover */
-.navbar a:hover, .dropdown:hover .dropbtn {
+.navbar a:hover {
   background-color: red;
 }
 

@@ -1,6 +1,6 @@
 
 function mathtutor($scope, $log, $http) {
-    $scope.gametitle = "MathTutor";
+    $scope.gametitle = "Fruity Sums";
     $scope.maxNumber = 11;
     $scope.n1 = 0;
     $scope.n2 = 0;
