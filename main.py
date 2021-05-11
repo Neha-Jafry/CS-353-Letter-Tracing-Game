@@ -62,12 +62,15 @@ def showScore():
 
 @app.route('/stat')
 def admin():
-    data = db.child("users").child(person['uid']).get().val()
-    content = {}
-    for key, val in data.items():
-        context[key] = val
-
-    return render_template("stat.html", context=context)
+    if person["is_logged_in"] == True:
+        data = db.child("users").child(person['uid']).get().val()
+        context = {}
+        for key, val in data.items():
+            context[key] = val
+        print(context)
+        return render_template("stat.html", context=context)
+    else:
+        return render_template("login.html")
 
 #Login
 @app.route("/")

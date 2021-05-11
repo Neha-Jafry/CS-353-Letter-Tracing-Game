@@ -13,10 +13,12 @@
   <!-- navigation bar -->
   <div class="navbar" style="justify-content: flex-start;">
     <h3 style="color:white">CB Lite Games</h3>
-    <a href="/signup">Home</a>
-    <a href="/help">Help</a>
+    <h4 style="color:white">{{name }}</h4>
+    <a href="/signup">Sign Out</a>
+    <a href="/stat">Statistics</a>
+
     <div class="dropdown">
-      <button class="dropbtn">More
+      <button class="dropbtn" style="color: #333;">More
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
@@ -28,9 +30,10 @@
   </div>
 
 
+
   <div class="sidenav">
-    <a href="#">Letter Tracing Game</a>
-    <a href="#">Other Game</a>
+    <a href="/game">Math Game</a>
+    <a href="/chooseGame">Other Game</a>
   </div>
 
 
@@ -49,8 +52,8 @@
                 <div class="card-body">
                     <div class="row">
                     <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Games played</h5>
-                        <span class="h2 font-weight-bold mb-0">2</span>
+                        <h5 class="card-title text-uppercase text-muted mb-0">{{Math}}</h5>
+                        <span class="h2 font-weight-bold mb-0">{{Math}}</span>
                     </div>
                     <div class="col-auto">
                         <div class="icon icon-shape bg-danger text-white rounded-circle shadow">

@@ -5,11 +5,43 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.sound.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/handtrackjs/dist/handtrack.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Handlee' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/nav-bar.css') }}">
+    
     <meta charset="utf-8" />
   </head>
-  <body>
+  <body style="background-color: rgb(57, 57, 138);">
+      <!-- navigation bar -->
+      <div class="navbar" style="justify-content: flex-start;">
+        <h3 style="color:white">CB Lite Games</h3>
+        <h4 style="color:white">{{name }}</h4>
+        <a href="/signup">Sign Out</a>
+        <a href="/stat">Statistics</a>
+    
+        <div class="dropdown">
+          <button class="dropbtn" style="color: #333;">More
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="/stat">Statistics</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div>
+        </div>
+      </div>
+    
+    
+    
+      <div class="sidenav">
+        <a href="/game">Math Game</a>
+        <a href="/chooseGame">Other Game</a>
+      </div>
+    <p class="text-center" style="text-align: center; color: white; font-family: 'Arial'; font-size: 40px; font-weight: bold;">Trace It Out</p>
+    <div style="text-align: center; padding-top: 15%">
+      <canvas id="canvas" class="border canvasbox" style="position: center;"></canvas>
+    </div>
 
-    <canvas id="canvas" class="border canvasbox"></canvas>
     <script>
       const canvas = document.getElementById("canvas");
       const context = canvas.getContext("2d");
@@ -26,7 +58,7 @@
       canvas.width = 140;
 
       context.fillStyle = "rgb(200, 200, 250)";
-      drawletter("5");
+      drawletter("7");
       context.fillStyle = "rgb(0, 0, 50)";
       letterpixels = getpixelamount(200, 200, 250);
 
@@ -122,8 +154,9 @@
         const y = Math.round(e.clientY - canvas.getBoundingClientRect().top);
         // const x = ev.clientX;
         // const y = ev.clientY;
-        if (mousedown)
-        {paint(x, y);}
+        if (mousedown){
+          paint(x, y);
+        }
       }
       
     </script>
