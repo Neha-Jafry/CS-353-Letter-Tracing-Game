@@ -18,28 +18,27 @@
         <h4 style="color:white">{{name }}</h4>
         <a href="/signup">Sign Out</a>
         <a href="/stat">Statistics</a>
-    
-        <div class="dropdown">
-          <button class="dropbtn" style="color: #333;">More
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a href="/stat">Statistics</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-          </div>
-        </div>
       </div>
-    
     
     
       <div class="sidenav">
         <a href="/game">Math Game</a>
-        <a href="/chooseGame">Other Game</a>
+        <a href="/chooseGame">Other Games</a>
       </div>
     <p class="text-center" style="text-align: center; color: white; font-family: 'Arial'; font-size: 40px; font-weight: bold;">Trace It Out</p>
     <div style="text-align: center; padding-top: 15%">
       <canvas id="canvas" class="border canvasbox" style="position: center;"></canvas>
+      <div class="container answer-row">
+        <div class="row">
+            <div class="col-sm-5 hidden-xs">
+            </div>
+            <div class="col-sm-2 hidden-xs">
+                <button class="btn btn-danger center-block full-width" onclick="exitGame()">Record This Score</button>
+            </div>
+            <div class="col-sm-5 hidden-xs">
+            </div>
+        </div>
+    </div>
     </div>
 
     <script>
@@ -157,6 +156,16 @@
         if (mousedown){
           paint(x, y);
         }
+      }
+
+      function exitGame() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/game/score", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            score: score(),
+            game: "L"
+          }));
       }
       
     </script>

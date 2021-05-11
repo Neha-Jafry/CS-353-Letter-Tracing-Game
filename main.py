@@ -51,13 +51,15 @@ def game():
 @app.route('/game/score', methods=["POST", "GET"])
 def showScore():
     data = json.loads(request.data.decode())
-    score = data['score']
-    g = db.child("users").child(person['uid']).child('high scoreM').get().val()
+    score = round(data['score'], 4)*100
+    score_of_game = "M"
+    if "game" in data.keys():
+        score_of_game = data['game']
+    g = db.child("users").child(person['uid']).child('high score'+score_of_game).get().val()
     if score > g:
-        db.child("users").child(person['uid']).child('high scoreM').set(score)
+        db.child("users").child(person['uid']).child('high score'+score_of_game).set(score)
         print("done")
     return render_template("login1.html")
-
 
 
 @app.route('/stat')
@@ -65,8 +67,12 @@ def admin():
     if person["is_logged_in"] == True:
         data = db.child("users").child(person['uid']).get().val()
         context = {}
-        for key, val in data.items():
-            context[key] = val
+        context["Total Math Game Sessions"] = data["Math"]
+        context["Total Tracing Game Sessions"] = data["Letter Tracing"]
+        context["Math Game Highscore"] = data["high scoreM"]
+        context["Tracing Game Highscore"] = data["high scoreL"]
+        # for key, val in data.items():
+        #     context[key] = val
         print(context)
         return render_template("stat.html", context=context)
     else:
