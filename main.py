@@ -150,7 +150,7 @@ def register():
             person["uid"] = user["localId"]
             person["name"] = name
             #Append data to the firebase realtime database
-            data = {"name": name, "email": email, "high score": 0 , "Games Played": 0}
+            data = {"name": name, "email": email, "high scoreL": 0 , "high scoreM": 0, "Letter Tracing": 0, 'Math': 0}
             db.child("users").child(person["uid"]).set(data)
             #Go to welcome page
             return redirect(url_for('chooseGame'))
